@@ -1,4 +1,4 @@
-const firebaseURL = 'https://your-project-id.firebaseio.com'; // Replace with your Firebase URL
+const firebaseURL = 'https://coffee-survey-534ef-default-rtdb.europe-west1.firebasedatabase.app/'; // Replace with your Firebase URL
 
 const validUsername = "admin";
 const validPassword = "admin123";

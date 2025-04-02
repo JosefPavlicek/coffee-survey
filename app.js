@@ -1,4 +1,4 @@
-const firebaseURL = 'https://your-project-id.firebaseio.com'; // Replace with your Firebase project URL
+const firebaseURL = 'https://coffee-survey-534ef-default-rtdb.europe-west1.firebasedatabase.app/'; // Replace with your Firebase project URL
 
 const brewingOptions = [
   'Ristretto', 'Espresso', 'Double Espresso', 'Lungo/Americano',
@@ -6,7 +6,7 @@ const brewingOptions = [
   'Turkish coffee', 'Filtered coffee', 'Instant coffee'
 ];
 
-const fairTradeOptions = ['Definitely yes', 'Rather yes', 'Rather not', 'Definitely not', 'I don t know'];
+const fairTradeOptions = ['Definitely yes', 'Rather yes', 'Rather not', 'Definitely not', 'I don\' t know'];
 
 const priceOptions = [
   '< 5%', '5% (+2 CZK)', '10% (+4.5 CZK)', '15% (+7 CZK)',
