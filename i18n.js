@@ -1,13 +1,13 @@
 const translations = {
   en: {
-    title: "Coffee Survey",
+    title: "Coffee Survey TESTING VERSION",
     q1: "How would you rate the coffee you just tasted?",
     q2: "Which brewing method do you usually prefer? (Max 3)",
     q3: "Would you be willing to pay more for Fair Trade coffee?",
     q4: "If yes, how much more would you be willing to pay?",
   },
   cz: {
-    title: "Kávový dotazník",
+    title: "Kávový dotazník  TESTING VERSION",
     q1: "Jak hodnotíte kávu, kterou jste právě ochutnal?",
     q2: "Jaký způsob přípravy obvykle preferujete? (maximálně 3)",
     q3: "Byl byste ochotný si za svou kávu připlatit, pokud by splňovala označení „Fair trade“?",
