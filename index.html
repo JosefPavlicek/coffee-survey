@@ -1,48 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coffee Survey</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Survey - Part 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .lang-switch img {
+            cursor: pointer;
+            width: 30px;
+            margin-left: 10px;
+        }
+
+        .progress-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .border-danger {
+            border: 2px solid #dc3545 !important;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
+
 <body class="p-4">
-  <div class="container">
-    <h1 data-i18n="title">Coffee Survey</h1>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 data-i18n="title">Coffee Survey – Part 2</h1>
+            <div class="lang-switch">
+                <img src="https://flagcdn.com/gb.svg" alt="English" onclick="switchLang('en')">
+                <img src="https://flagcdn.com/cz.svg" alt="Čeština" onclick="switchLang('cz')">
+            </div>
+        </div>
 
-    <div class="mb-3">
-      <label class="form-label" data-i18n="q1">How would you rate the coffee you just tasted?</label>
-      <div id="q1" class="form-check">
-        <input class="form-check-input" type="radio" name="q1" value="1" required /> <label class="form-check-label">1 (Excellent)</label><br/>
-        <input class="form-check-input" type="radio" name="q1" value="2" /> <label class="form-check-label">2 (Very good)</label><br/>
-        <input class="form-check-input" type="radio" name="q1" value="3" /> <label class="form-check-label">3 (Average)</label><br/>
-        <input class="form-check-input" type="radio" name="q1" value="4" /> <label class="form-check-label">4 (Below average)</label><br/>
-        <input class="form-check-input" type="radio" name="q1" value="5" /> <label class="form-check-label">5 (Unsatisfactory)</label>
-      </div>
+
+        <!-- Sticky Progress bar -->
+        <div class="progress-sticky">
+            <div class="progress">
+              <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                  aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+            <div id="progressInfo" class="mt-1 text-muted small"></div>
+          </div>
+
+        <!-- Q10 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q10"></label>
+            <div id="q10" class="form-check"></div>
+            <input type="text" id="q10_other" class="form-control mt-2" placeholder=""
+                data-i18n-placeholder="q10_other">
+        </div>
+
+        <!-- Q11 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q11"></label>
+            <div id="q11" class="form-check"></div>
+            <input type="text" id="q11_other" class="form-control mt-2" placeholder=""
+                data-i18n-placeholder="q11_other">
+        </div>
+
+        <!-- Q12 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q12"></label>
+            <div id="q12" class="form-check"></div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q13"></label>
+            <div id="q13" class="form-check"></div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q14"></label>
+            <div id="q14" class="form-check"></div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q15"></label>
+            <div id="q15" class="form-check"></div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q16"></label>
+            <div id="q16" class="form-check"></div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q17"></label>
+            <div id="q17" class="form-check"></div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q18"></label>
+            <div id="q18" class="form-check"></div>
+            <input type="text" id="q18_other" class="form-control mt-2" placeholder=""
+                data-i18n-placeholder="q18_other">
+        </div>
+
+        <!-- Q19 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q19"></label>
+            <div id="q19" class="form-check"></div>
+            <input type="text" id="q19_other" class="form-control mt-2" placeholder=""
+                data-i18n-placeholder="q19_other">
+        </div>
+
+        <!-- Q20 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q20"></label>
+            <div id="q20" class="form-check"></div>
+            <input type="text" id="q20_other" class="form-control mt-2" placeholder=""
+                data-i18n-placeholder="q20_other">
+        </div>
+
+        <!-- Q21 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q21"></label>
+            <div id="q21" class="form-check"></div>
+        </div>
+        <!-- Q22 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q22"></label>
+            <div id="q22" class="form-check"></div>
+        </div>
+
+        <!-- Q22a (zobrazí se pouze pokud odpověď = Určitě ano nebo Spíše ano) -->
+        <div id="q22a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q22a"></label>
+            <div id="q22a" class="form-check"></div>
+        </div>
+
+        <!-- Q23 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q23"></label>
+            <div id="q23" class="form-check"></div>
+        </div>
+
+        <!-- Q23a – zobrazuje se pouze pokud Q23 == určitě ano/spíše ano -->
+        <div id="q23a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q23a"></label>
+            <div id="q23a" class="form-check"></div>
+        </div>
+
+        <!-- Q24 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q24"></label>
+            <div id="q24" class="form-check"></div>
+        </div>
+
+        <!-- Q24a -->
+        <div id="q24a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q24a"></label>
+            <div id="q24a" class="form-check"></div>
+        </div>
+        <!-- Q25 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q25"></label>
+            <div id="q25" class="form-check"></div>
+        </div>
+        <!-- Q25a -->
+        <div id="q25a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q25a"></label>
+            <div id="q25a" class="form-check"></div>
+        </div>
+
+        <!-- Q26 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q26"></label>
+            <div id="q26" class="form-check"></div>
+        </div>
+        <!-- Q26a -->
+        <div id="q26a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q26a"></label>
+            <div id="q26a" class="form-check"></div>
+        </div>
+
+        <!-- Q27 -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q27"></label>
+            <div id="q27" class="form-check"></div>
+        </div>
+        <!-- Q27a -->
+        <div id="q27a_block" class="p-3 mb-3 rounded" style="background-color: #f7f7f7; display: none;">
+            <label class="form-label fw-bold" data-i18n="q27a"></label>
+            <div id="q27a" class="form-check"></div>
+        </div>
+
+        <!-- Section III -->
+        <h3 data-i18n="section3">Part III – Demographic Data</h3>
+
+        <!-- Q28: Age -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q28"></label>
+            <div id="q28" class="form-check"></div>
+        </div>
+
+        <!-- Q29: Nationality -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q29"></label>
+            <input type="text" id="q29" class="form-control" />
+        </div>
+
+        <!-- Q30: Gender -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q30"></label>
+            <div id="q30" class="form-check"></div>
+        </div>
+
+        <!-- Q31: Family status -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q31"></label>
+            <div id="q31" class="form-check"></div>
+        </div>
+
+        <!-- Q32: Municipality size -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q32"></label>
+            <div id="q32" class="form-check"></div>
+        </div>
+
+        <!-- Q33: Permanent residence -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q33"></label>
+            <input type="text" id="q33" class="form-control" />
+        </div>
+
+        <!-- Q34: Education -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q34"></label>
+            <div id="q34" class="form-check"></div>
+        </div>
+
+        <!-- Q35: Status -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q35"></label>
+            <div id="q35" class="form-check"></div>
+        </div>
+
+        <!-- Q36: Monthly income -->
+        <div class="p-3 mb-3 rounded" style="background-color: #f7f7f7;">
+            <label class="form-label fw-bold" data-i18n="q36"></label>
+            <div id="q36" class="form-check"></div>
+        </div>
+
+        <!-- Q37: Email -->
+        <div class="p-3 mb-3 rounded" style="background-color: #e7f3fe;">
+            <label class="form-label fw-bold" data-i18n="q37"></label>
+            <input type="email" id="q37" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <button id="submitBtn" class="btn btn-primary" data-i18n="submit">Submit</button>
+        </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label" data-i18n="q2">Which brewing method do you usually prefer? (Max 3)</label>
-      <div id="q2" class="form-check"></div>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label" data-i18n="q3">Would you be willing to pay more for Fair Trade coffee?</label>
-      <div id="q3" class="form-check"></div>
-    </div>
-
-    <div class="mb-3" id="q4-wrapper" style="display:none;">
-      <label class="form-label" data-i18n="q4">If yes, how much more would you be willing to pay?</label>
-      <div id="q4" class="form-check"></div>
-    </div>
-
-    <div class="mb-3">
-      <button id="submitBtn" class="btn btn-primary">Submit</button>
-      <button id="langSwitch" class="btn btn-secondary">Čeština</button>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-  <script src="i18n.js"></script>
+    <script src="app.js"></script>
+    <script src="i18n.js"></script>
 </body>
+
 </html>
